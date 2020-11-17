@@ -6,6 +6,7 @@ import com.silth.wallet.dto.UserDTO;
 import com.silth.wallet.entity.User;
 import com.silth.wallet.response.Response;
 import com.silth.wallet.service.UserService;
+import com.silth.wallet.util.Crypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,7 @@ public class UserController {
     private User convertDtoToEntity(UserDTO dto){
         User u = new User();
         u.setId(dto.getId());
-        u.setPassword(dto.getPassword());
+        u.setPassword(Crypt.getHash(dto.getPassword()));
         u.setName(dto.getName());
         u.setEmail(dto.getEmail());
 
@@ -51,7 +52,6 @@ public class UserController {
     private UserDTO convertEntityToDto(User user){
         UserDTO u = new UserDTO();
         u.setId(user.getId());
-        u.setPassword(user.getPassword());
         u.setName(user.getName());
         u.setEmail(user.getEmail());
 

@@ -28,12 +28,7 @@ public class UserRepositoryTest {
 
     @Before
     public void setup(){
-        User u = new User();
-        u.setName("Setup user");
-        u.setPassword("123");
-        u.setEmail(EMAIL);
 
-        repository.save(u);
     }
 
     @After
@@ -55,6 +50,13 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindByEmail(){
+        User u = new User();
+        u.setName("Setup user");
+        u.setPassword("123");
+        u.setEmail(EMAIL);
+
+        repository.save(u);
+
         Optional<User> response = repository.findByEmailEquals(EMAIL);
         assertTrue(response.isPresent());
         assertEquals(response.get().getEmail(), EMAIL);
