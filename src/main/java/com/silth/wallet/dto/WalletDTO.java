@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class WalletDTO {
     private Long id;
     @Length(min = 3)
-    @NotNull
+    @NotNull(message = "Informe o nome da carteira")
     private String name;
     @NotNull
     private BigDecimal value;
