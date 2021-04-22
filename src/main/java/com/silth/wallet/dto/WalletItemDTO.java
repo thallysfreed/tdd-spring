@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 public class WalletItemDTO {
-    private Integer id;
+    private Long id;
 
     @NotNull(message = "Carteira obrigatória")
     private Long walletId;
