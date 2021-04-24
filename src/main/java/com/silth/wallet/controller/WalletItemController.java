@@ -1,10 +1,7 @@
 package com.silth.wallet.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import javax.validation.Valid;
 
@@ -73,12 +70,12 @@ public class WalletItemController {
         Response<Page<WalletItemDTO>> response = new Response<Page<WalletItemDTO>>();
 
 
-        Optional<UserWallet> uw = userWalletService.findByUsersIdAndWalletId(null, wallet);
-
-        if (!uw.isPresent()) {
-            response.getErrors().add("Você não tem acesso a essa carteira");
-            return ResponseEntity.badRequest().body(response);
-        }
+//        Optional<UserWallet> uw = userWalletService.findByUsersIdAndWalletId(null, wallet);
+//
+//        if (!uw.isPresent()) {
+//            response.getErrors().add("Você não tem acesso a essa carteira");
+//            return ResponseEntity.badRequest().body(response);
+//        }
 
         Page<WalletItem> items = service.findBetweenDates(wallet, startDate, endDate, page);
         Page<WalletItemDTO> dto = items.map(i -> this.convertEntityToDto(i));
@@ -173,7 +170,7 @@ public class WalletItemController {
         dto.setDate(wi.getDate());
         dto.setDescription(wi.getDescription());
         dto.setId(wi.getId());
-        dto.setType(wi.getType().getValue());
+        dto.setType(Objects.isNull(wi.getType()) ? "" : wi.getType().getValue());
         dto.setValue(wi.getValue());
         dto.setWalletId(wi.getWallet().getId());
 

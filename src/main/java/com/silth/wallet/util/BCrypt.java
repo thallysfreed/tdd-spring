@@ -2,7 +2,7 @@ package com.silth.wallet.util;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class Crypt {
+public class BCrypt {
     public static String getHash(String password){
         if(password == null){
             return null;

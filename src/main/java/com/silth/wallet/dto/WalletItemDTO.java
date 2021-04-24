@@ -1,5 +1,6 @@
 package com.silth.wallet.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.silth.wallet.entity.Wallet;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class WalletItemDTO {
     private Long walletId;
 
     @NotNull(message = "Data obrigatória")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
     private Date date;
 
     @Column(nullable = false)

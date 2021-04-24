@@ -16,7 +16,7 @@ public enum TypeEnum {
 
     public static TypeEnum getEnum(String value){
         for(TypeEnum typeEnum: values()){
-            if(typeEnum.equals(value)){
+            if(typeEnum.getValue().equals(value)){
                 return typeEnum;
             }
         }

@@ -1,8 +1,10 @@
 package com.silth.wallet.entity;
 
+import com.silth.wallet.util.enums.RoleEnum;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -20,4 +22,8 @@ public class User implements Serializable {
     private String password;
     @Column(nullable = false)
     private String email;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
 }
