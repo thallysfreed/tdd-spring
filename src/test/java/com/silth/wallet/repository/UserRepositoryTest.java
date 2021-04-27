@@ -1,6 +1,7 @@
 package com.silth.wallet.repository;
 
 import com.silth.wallet.entity.User;
+import com.silth.wallet.util.enums.RoleEnum;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.junit.After;
 import org.junit.Assert;
@@ -42,6 +43,7 @@ public class UserRepositoryTest {
         u.setName("Teste");
         u.setPassword("123");
         u.setEmail("teste@teste.com");
+        u.setRole(RoleEnum.ROLE_ADMIN);
 
         User response = repository.save(u);
 
@@ -54,6 +56,7 @@ public class UserRepositoryTest {
         u.setName("Setup user");
         u.setPassword("123");
         u.setEmail(EMAIL);
+        u.setRole(RoleEnum.ROLE_ADMIN);
 
         repository.save(u);
 

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.silth.wallet.dto.UserDTO;
 import com.silth.wallet.entity.User;
 import com.silth.wallet.service.UserService;
+import com.silth.wallet.util.enums.RoleEnum;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,7 @@ public class UserControllerTest {
     private static final String EMAIL = "email@teste.com";
     private static final String NAME = "User User";
     private static final String PASSWORD = "123456";
+    private static final String ROLE = "ROLE_USER";
     private static final String URL = "/user";
 
     @MockBean
@@ -54,7 +56,7 @@ public class UserControllerTest {
 
     @Test
     public void testSave() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload(ID, EMAIL, NAME, PASSWORD))
+        mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload(ID, EMAIL, NAME, PASSWORD, ROLE))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -66,7 +68,7 @@ public class UserControllerTest {
 
     @Test
     public void testInvalidUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload(ID, EMAIL, "", PASSWORD))
+        mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload(ID, EMAIL, "", PASSWORD, ROLE))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -78,16 +80,18 @@ public class UserControllerTest {
         u.setEmail(EMAIL);
         u.setName(NAME);
         u.setPassword(PASSWORD);
+        u.setRole(RoleEnum.ROLE_USER);
 
         return u;
     }
 
-    public String getJsonPayload(Long id, String email, String name, String password) throws JsonProcessingException {
+    public String getJsonPayload(Long id, String email, String name, String password, String role) throws JsonProcessingException {
         UserDTO dto = new UserDTO();
         dto.setId(id);
         dto.setEmail(email);
         dto.setName(name);
         dto.setPassword(password);
+        dto.setRole(role);
 
         ObjectMapper mapper = new ObjectMapper();
 

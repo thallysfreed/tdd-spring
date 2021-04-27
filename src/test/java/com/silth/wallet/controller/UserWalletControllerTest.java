@@ -9,6 +9,7 @@ import com.silth.wallet.entity.UserWallet;
 import com.silth.wallet.entity.Wallet;
 import com.silth.wallet.service.UserWalletService;
 import com.silth.wallet.service.WalletService;
+import com.silth.wallet.util.enums.RoleEnum;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserWalletControllerTest {
     public static final long WALLET_ID = 1l;
     public static final long USER_ID = 1l;
-    public static final String URL = "/wallet";
+    public static final String URL = "/user-wallet";
 
     @MockBean
     private UserWalletService userWalletService;
@@ -68,16 +69,17 @@ public class UserWalletControllerTest {
 
     private User getUser(){
         User user = new User();
-        user.setId(0l);
+        user.setId(1l);
         user.setName("TESTE");
         user.setEmail("teste@teste.com.br");
         user.setPassword("123456");
+        user.setRole(RoleEnum.ROLE_USER);
         return user;
     }
 
     private Wallet getWallet(){
         Wallet wallet = new Wallet();
-        wallet.setId(0l);
+        wallet.setId(1l);
         wallet.setName("CARTEIRA DE TESTE");
         wallet.setValue(new BigDecimal(50));
         return wallet;

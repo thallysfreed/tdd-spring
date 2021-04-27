@@ -3,6 +3,7 @@ package com.silth.wallet.repository;
 import com.silth.wallet.entity.User;
 import com.silth.wallet.entity.UserWallet;
 import com.silth.wallet.entity.Wallet;
+import com.silth.wallet.util.enums.RoleEnum;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -75,6 +76,7 @@ public class UserWalletRepositoryTest {
         user.setName("TESTE");
         user.setEmail("teste@teste.com.br");
         user.setPassword("123456");
+        user.setRole(RoleEnum.ROLE_USER);
         return userRepository.save(user);
     }
 
