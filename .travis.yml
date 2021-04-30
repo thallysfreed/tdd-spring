@@ -8,8 +8,7 @@ before_install:
   - chmod +x mvnw
 deploy:
   provider: heroku
-  api_key:
-    secure: $SECURE_KEY
+  api_key: $CHAVE
   app: $APP
   on:
     branch: main
